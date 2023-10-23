@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tahitian Text Generator</title>
+    <style>
+        body {
+            background-image: url('background.jpg'); /* Replace 'background.jpg' with the actual filename of your image */
+            background-size: cover; /* Adjust the background size as needed */
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tahitian Text Generator</h1>
+    <textarea id="text-input" rows="10" cols="30" placeholder="Enter your Tahitian text here"></textarea>
+    <button id="generate-button">Generate HTML</button>
+    <a id="download-link" style="display: none">Download HTML</a>
+
+    <script>
+        const generateButton = document.getElementById('generate-button');
+        generateButton.addEventListener('click', generateHTML);
+
+        function generateHTML() {
+            const text = document.getElementById('text-input').value;
+            const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <title>Tahitian Text</title>
+</head>
+<body>
+    <p>${text}</p>
+</body>
+</html>`;
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            const downloadLink = document.getElementById('download-link');
+            downloadLink.href = url;
+            downloadLink.download = 'tahitian_text.html';
+            downloadLink.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
